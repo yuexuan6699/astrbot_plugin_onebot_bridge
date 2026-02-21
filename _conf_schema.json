@@ -1,0 +1,400 @@
+{
+  "websocket_clients": {
+    "description": "网络配置列表",
+    "type": "template_list",
+    "hint": "配置要连接的副Bot网络服务端点",
+    "default": [],
+    "templates": {
+      "HTTP服务器": {
+        "name": "HTTP服务器",
+        "hint": "配置一个HTTP服务器来接收副Bot的消息",
+        "items": {
+          "name": {
+            "description": "名称",
+            "type": "string",
+            "default": "http_server",
+            "hint": "服务器标识名称"
+          },
+          "enable": {
+            "description": "启用",
+            "type": "bool",
+            "default": true,
+            "hint": "保存后启用此配置"
+          },
+          "debug": {
+            "description": "开启Debug",
+            "type": "bool",
+            "default": false,
+            "hint": "是否开启调试模式"
+          },
+          "host": {
+            "description": "Host",
+            "type": "string",
+            "default": "127.0.0.1",
+            "hint": "HTTP服务器监听地址"
+          },
+          "port": {
+            "description": "Port",
+            "type": "int",
+            "default": 3000,
+            "hint": "HTTP服务器监听端口"
+          },
+          "enable_cors": {
+            "description": "启用CORS",
+            "type": "bool",
+            "default": true,
+            "hint": "是否启用CORS跨域"
+          },
+          "enable_websocket": {
+            "description": "启用Websocket",
+            "type": "bool",
+            "default": false,
+            "hint": "是否启用Websocket"
+          },
+          "message_post_format": {
+            "description": "消息格式",
+            "type": "string",
+            "default": "array",
+            "options": ["array", "string"],
+            "hint": "消息格式：array或string"
+          },
+          "token": {
+            "description": "Token",
+            "type": "string",
+            "default": "",
+            "hint": "HTTP访问的验证令牌"
+          }
+        }
+      },
+      "HTTP SSE服务器": {
+        "name": "HTTP SSE服务器",
+        "hint": "配置一个HTTP SSE服务器来接收副Bot的消息",
+        "items": {
+          "name": {
+            "description": "服务器名称",
+            "type": "string",
+            "default": "sse_server",
+            "hint": "服务器标识名称"
+          },
+          "enable": {
+            "description": "启用服务器",
+            "type": "bool",
+            "default": true,
+            "hint": "保存后启用此配置"
+          },
+          "debug": {
+            "description": "开启Debug",
+            "type": "bool",
+            "default": false,
+            "hint": "是否开启调试模式"
+          },
+          "host": {
+            "description": "Host",
+            "type": "string",
+            "default": "127.0.0.1",
+            "hint": "HTTP SSE服务器监听地址"
+          },
+          "port": {
+            "description": "Port",
+            "type": "int",
+            "default": 3002,
+            "hint": "HTTP SSE服务器监听端口"
+          },
+          "enable_cors": {
+            "description": "启用CORS",
+            "type": "bool",
+            "default": true,
+            "hint": "是否启用CORS跨域"
+          },
+          "message_post_format": {
+            "description": "消息格式",
+            "type": "string",
+            "default": "array",
+            "options": ["array", "string"],
+            "hint": "消息格式：array或string"
+          },
+          "token": {
+            "description": "Token",
+            "type": "string",
+            "default": "",
+            "hint": "HTTP访问的验证令牌"
+          }
+        }
+      },
+      "HTTP客户端": {
+        "name": "HTTP客户端",
+        "hint": "配置一个HTTP客户端来连接副Bot",
+        "items": {
+          "name": {
+            "description": "客户端名称",
+            "type": "string",
+            "default": "http_client",
+            "hint": "客户端标识名称"
+          },
+          "enable": {
+            "description": "启用客户端",
+            "type": "bool",
+            "default": true,
+            "hint": "保存后启用此配置"
+          },
+          "debug": {
+            "description": "开启Debug",
+            "type": "bool",
+            "default": false,
+            "hint": "是否开启调试模式"
+          },
+          "base_url": {
+            "description": "基础URL",
+            "type": "string",
+            "default": "http://localhost:3000",
+            "hint": "HTTP服务端基础URL地址"
+          },
+          "report_self_message": {
+            "description": "上报自身消息",
+            "type": "bool",
+            "default": false,
+            "hint": "是否上报自身消息"
+          },
+          "enable_force_push_event": {
+            "description": "强制推送事件",
+            "type": "bool",
+            "default": true,
+            "hint": "是否强制推送事件"
+          },
+          "message_post_format": {
+            "description": "消息格式",
+            "type": "string",
+            "default": "array",
+            "options": ["array", "string"],
+            "hint": "消息格式：array(数组)或string(字符串)"
+          },
+          "token": {
+            "description": "Token",
+            "type": "string",
+            "default": "",
+            "hint": "HTTP连接的访问令牌"
+          },
+          "timeout": {
+            "description": "请求超时(秒)",
+            "type": "int",
+            "default": 30,
+            "hint": "HTTP请求超时时间(秒)"
+          }
+        }
+      },
+      "WebSocket服务器": {
+        "name": "WebSocket服务器",
+        "hint": "配置一个WebSocket服务器来接收副Bot的连接",
+        "items": {
+          "name": {
+            "description": "名称",
+            "type": "string",
+            "default": "ws_server",
+            "hint": "服务器标识名称"
+          },
+          "enable": {
+            "description": "启用服务器",
+            "type": "bool",
+            "default": true,
+            "hint": "保存后启用此配置"
+          },
+          "debug": {
+            "description": "开启Debug",
+            "type": "bool",
+            "default": false,
+            "hint": "是否开启调试模式"
+          },
+          "host": {
+            "description": "Host",
+            "type": "string",
+            "default": "127.0.0.1",
+            "hint": "WebSocket服务器监听地址"
+          },
+          "port": {
+            "description": "Port",
+            "type": "int",
+            "default": 3001,
+            "hint": "WebSocket服务器监听端口"
+          },
+          "path": {
+            "description": "路径",
+            "type": "string",
+            "default": "/OneBotv11",
+            "hint": "WebSocket服务端路径"
+          },
+          "report_self_message": {
+            "description": "上报自身消息",
+            "type": "bool",
+            "default": false,
+            "hint": "是否上报自身消息"
+          },
+          "enable_force_push_event": {
+            "description": "强制推送事件",
+            "type": "bool",
+            "default": true,
+            "hint": "是否强制推送事件"
+          },
+          "message_post_format": {
+            "description": "消息格式",
+            "type": "string",
+            "default": "array",
+            "options": ["array", "string"],
+            "hint": "消息格式：array或string"
+          },
+          "token": {
+            "description": "Token",
+            "type": "string",
+            "default": "",
+            "hint": "WebSocket连接的访问令牌"
+          },
+          "heart_interval": {
+            "description": "心跳间隔",
+            "type": "int",
+            "default": 30000,
+            "hint": "心跳间隔时间(毫秒)"
+          }
+        }
+      },
+      "WebSocket客户端": {
+        "name": "WebSocket客户端",
+        "hint": "配置一个WebSocket客户端连接副Bot",
+        "items": {
+          "name": {
+            "description": "名称",
+            "type": "string",
+            "default": "ws_client",
+            "hint": "客户端标识名称"
+          },
+          "enable": {
+            "description": "启用",
+            "type": "bool",
+            "default": true,
+            "hint": "保存后启用此配置"
+          },
+          "debug": {
+            "description": "开启Debug",
+            "type": "bool",
+            "default": false,
+            "hint": "是否开启调试模式"
+          },
+          "uri": {
+            "description": "WebSocket地址",
+            "type": "string",
+            "default": "ws://localhost:3001/OneBotv11",
+            "hint": "WebSocket服务端URI地址"
+          },
+          "report_self_message": {
+            "description": "上报自身消息",
+            "type": "bool",
+            "default": false,
+            "hint": "是否上报自身消息"
+          },
+          "enable_force_push_event": {
+            "description": "强制推送事件",
+            "type": "bool",
+            "default": true,
+            "hint": "是否强制推送事件"
+          },
+          "message_post_format": {
+            "description": "消息格式",
+            "type": "string",
+            "default": "array",
+            "options": ["array", "string"],
+            "hint": "消息格式：array或string"
+          },
+          "token": {
+            "description": "Token",
+            "type": "string",
+            "default": "",
+            "hint": "WebSocket连接的访问令牌"
+          },
+          "heart_interval": {
+            "description": "心跳间隔",
+            "type": "int",
+            "default": 30000,
+            "hint": "心跳间隔时间(毫秒)"
+          },
+          "ping_interval": {
+            "description": "Ping间隔(秒)",
+            "type": "int",
+            "default": 10,
+            "hint": "Ping间隔时间(秒)"
+          },
+          "ping_timeout": {
+            "description": "Ping超时(秒)",
+            "type": "int",
+            "default": 20,
+            "hint": "Ping超时时间(秒)"
+          },
+          "connect_timeout": {
+            "description": "连接超时(秒)",
+            "type": "int",
+            "default": 10,
+            "hint": "连接超时时间(秒)"
+          },
+          "close_timeout": {
+            "description": "关闭超时(秒)",
+            "type": "int",
+            "default": 5,
+            "hint": "关闭超时时间(秒)"
+          },
+          "max_reconnect_attempts": {
+            "description": "最大重连次数",
+            "type": "int",
+            "default": 0,
+            "hint": "最大重连尝试次数,0表示无限重连"
+          }
+        }
+      }
+    }
+  },
+  "features": {
+    "description": "功能开关配置",
+    "type": "object",
+    "hint": "配置插件的功能开关",
+    "items": {
+      "enable_group_forward": {
+        "description": "启用群消息转发",
+        "type": "bool",
+        "default": true,
+        "hint": "是否转发群消息到副Bot"
+      },
+      "enable_private_forward": {
+        "description": "启用私聊消息转发",
+        "type": "bool",
+        "default": false,
+        "hint": "是否转发私聊消息到副Bot"
+      },
+      "command_prefix": {
+        "description": "命令前缀",
+        "type": "string",
+        "default": "",
+        "hint": "触发转发的命令前缀,匹配后去除前缀转发剩余内容"
+      },
+      "forward_fprefix": {
+        "description": "转发前缀",
+        "type": "list",
+        "default": ["#", "*", "%"],
+        "hint": "前缀匹配,消息以指定前缀开头时完整转发"
+      },
+      "forward_keyword": {
+        "description": "转发关键字",
+        "type": "list",
+        "default": [],
+        "hint": "触发转发的关键字,消息包含关键字时转发完整消息,为空则不启用"
+      },
+      "help_list": {
+        "description": "帮助列表",
+        "type": "list",
+        "default": [],
+        "hint": "帮助命令返回的额外帮助信息列表"
+      }
+    }
+  },
+  "debug": {
+    "description": "调试模式",
+    "type": "bool",
+    "default": false,
+    "hint": "启用调试模式会输出更多日志信息"
+  }
+}
