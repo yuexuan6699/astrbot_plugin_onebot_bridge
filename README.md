@@ -133,19 +133,6 @@
 | forward_fprefix | 转发前缀 (完整转发) | [] |
 | forward_keyword | 触发转发的关键字 | [] |
 
-### 全局功能开关配置
-
-以下配置在 `features` 中，作为全局默认设置：
-
-| 配置项 | 说明 | 默认值 |
-|--------|------|--------|
-| enable_group_forward | 启用群消息转发 | true |
-| enable_private_forward | 启用私聊消息转发 | false |
-| command_prefix | 命令前缀 (去除前缀转发) | (空) |
-| forward_fprefix | 转发前缀 (完整转发) | ["#", "*", "%"] |
-| forward_keyword | 触发转发的关键字 | [] |
-| help_list | 帮助命令返回的列表内容 | [] |
-
 ### 调试配置
 
 | 配置项 | 说明 | 默认值 |
@@ -180,8 +167,6 @@
   - `forward_fprefix`：转发前缀列表
   - `forward_keyword`：转发关键字列表
 
-- 优先级：单个连接的配置 > 全局 `features` 配置
-
 示例配置结构：
 ```json
 {
@@ -202,11 +187,7 @@
       "enable_group_forward": true,
       "forward_fprefix": ["#", "*"]
     }
-  ],
-  "features": {
-    "enable_group_forward": true,
-    "command_prefix": ""
-  }
+  ]
 }
 ```
 
@@ -218,7 +199,7 @@ bot_help
 help
 ```
 
-执行帮助命令后，会显示当前配置的指令格式。如果配置了 `help_list`，还会将列表中的内容转发到副 Bot。
+执行帮助命令后，会显示当前配置的指令格式。
 
 ## 消息类型支持
 

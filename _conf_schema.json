@@ -180,6 +180,12 @@
             "default": 30,
             "hint": "HTTP 请求超时时间 (秒)"
           },
+          "endpoint": {
+            "description": "API端点",
+            "type": "string",
+            "default": "/onebot/v11",
+            "hint": "HTTP API 端点路径"
+          },
           "enable_group_forward": {
             "description": "启用群消息转发",
             "type": "bool",

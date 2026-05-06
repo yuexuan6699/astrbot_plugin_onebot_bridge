@@ -1,4 +1,3 @@
-import asyncio
 from typing import Optional, Any, Tuple
 
 from astrbot.api.event import filter, AstrMessageEvent
@@ -10,7 +9,7 @@ import astrbot.api.message_components as Comp
 from .service import BotCommunicationCore
 
 
-@register("astrbot_plugin_onebot_bridge", "苏月晅", "OneBot 桥接插件，支持将消息转发到副 Bot 并支持 OneBot v11 协议", "1.1.0", "https://github.com/yuexuan6699/astrbot_plugin_onebot_bridge")
+@register("astrbot_plugin_onebot_bridge", "苏月晅", "OneBot 桥接插件，支持将消息转发到副 Bot 并支持 OneBot v11 协议", "1.1.1", "https://github.com/yuexuan6699/astrbot_plugin_onebot_bridge")
 class BotCommunicationPlugin(Star):
     FORWARD_TYPE_FULL = "full"
     FORWARD_TYPE_STRIP = "strip"
@@ -21,19 +20,6 @@ class BotCommunicationPlugin(Star):
         self.config = config
         self.bot_comm: Optional[BotCommunicationCore] = None
         self._enabled = False
-        
-        self.features = config.get("features", {})
-        self.global_enable_group_forward = self.features.get("enable_group_forward", True)
-        self.global_enable_private_forward = self.features.get("enable_private_forward", False)
-        self.global_command_prefix = self.features.get("command_prefix", "")
-        self.global_forward_fprefix = self.features.get("forward_fprefix", [])
-        self.global_forward_keyword = self.features.get("forward_keyword", [])
-        self.help_list = self.features.get("help_list", [])
-        
-        if isinstance(self.global_forward_fprefix, str):
-            self.global_forward_fprefix = [self.global_forward_fprefix] if self.global_forward_fprefix else []
-        if isinstance(self.global_forward_keyword, str):
-            self.global_forward_keyword = [self.global_forward_keyword] if self.global_forward_keyword else []
         
         self.bot_forward_rules = {}
     
@@ -263,9 +249,9 @@ class BotCommunicationPlugin(Star):
             forward_keyword = rules.get("forward_keyword", [])
             command_prefix = rules.get("command_prefix", "")
         else:
-            forward_fprefix = self.global_forward_fprefix
-            forward_keyword = self.global_forward_keyword
-            command_prefix = self.global_command_prefix
+            forward_fprefix = []
+            forward_keyword = []
+            command_prefix = ""
         
         if forward_fprefix:
             for prefix in forward_fprefix:
@@ -301,10 +287,6 @@ class BotCommunicationPlugin(Star):
         
         help_texts = []
         
-        if self.global_command_prefix:
-            help_texts.append(f"指令格式：{self.global_command_prefix}<命令>")
-            help_texts.append(f"例如：{self.global_command_prefix}帮助")
-        
         for bot_name, rules in self.bot_forward_rules.items():
             if rules["command_prefix"]:
                 help_texts.append(f"机器人 {bot_name}: {rules['command_prefix']}<命令>")
@@ -313,13 +295,6 @@ class BotCommunicationPlugin(Star):
             yield event.plain_result("\n".join(help_texts))
         else:
             yield event.plain_result("Bot 通信桥接插件已启用")
-        
-        if self.help_list:
-            event.stop_event()
-            for help_item in self.help_list:
-                await asyncio.sleep(1)
-                if self.bot_comm:
-                    await self.bot_comm.convert_and_forward(event, help_item)
     
     @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
     async def handle_group_message(self, event: AstrMessageEvent):
@@ -337,13 +312,6 @@ class BotCommunicationPlugin(Star):
                 forward_type, content = self._check_forward_condition(message_str, bot_name)
                 if forward_type != self.FORWARD_TYPE_NONE:
                     await self._process_forward(event, forward_type, content)
-        else:
-            if not self.global_enable_group_forward:
-                return
-            
-            forward_type, content = self._check_forward_condition(message_str)
-            if forward_type != self.FORWARD_TYPE_NONE:
-                await self._process_forward(event, forward_type, content)
         
         event.stop_event()
     
@@ -363,13 +331,6 @@ class BotCommunicationPlugin(Star):
                 forward_type, content = self._check_forward_condition(message_str, bot_name)
                 if forward_type != self.FORWARD_TYPE_NONE:
                     await self._process_forward(event, forward_type, content)
-        else:
-            if not self.global_enable_private_forward:
-                return
-            
-            forward_type, content = self._check_forward_condition(message_str)
-            if forward_type != self.FORWARD_TYPE_NONE:
-                await self._process_forward(event, forward_type, content)
         
         event.stop_event()
     

@@ -106,12 +106,21 @@ class BotCommunicationCore:
             logger.error(f"[Bot通信] 转发消息失败: {e}")
     
     async def forward_event(self, event: AstrMessageEvent, message_str: str = None):
+        if not event:
+            logger.debug("[Bot通信] 忽略空事件转发")
+            return
+        
         try:
+            message_content = message_str or event.message_str
+            if not message_content or not message_content.strip():
+                logger.debug("[Bot通信] 忽略空白消息转发")
+                return
+            
             forward_message = self._build_forward_message(event, message_str)
             if forward_message:
                 await self._broadcast_message(forward_message)
         except Exception as e:
-            logger.error(f"[Bot通信] 转发事件失败: {e}")
+            logger.error(f"[Bot通信] 转发事件失败: {type(e).__name__}: {e}", exc_info=True)
     
     async def _broadcast_message(self, message: Dict[str, Any]):
         tasks = [

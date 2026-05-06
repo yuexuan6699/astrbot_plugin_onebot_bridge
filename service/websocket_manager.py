@@ -315,7 +315,7 @@ class WebSocketManager:
         if success_count > 0:
             logger.debug(f"[Bot通信] 消息已发送到 {success_count} 个WebSocket客户端")
         else:
-            logger.debug("[Bot通信] 消息发送失败，所有WebSocket客户端未连接")
+            logger.warning("[Bot通信] 消息发送失败，所有WebSocket客户端未连接")
         
         return success_count
     
