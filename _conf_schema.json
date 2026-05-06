@@ -438,49 +438,6 @@
       }
     }
   },
-  "features": {
-    "description": "功能开关配置",
-    "type": "object",
-    "hint": "配置插件的功能开关",
-    "items": {
-      "enable_group_forward": {
-        "description": "启用群消息转发",
-        "type": "bool",
-        "default": true,
-        "hint": "是否转发群消息到副Bot"
-      },
-      "enable_private_forward": {
-        "description": "启用私聊消息转发",
-        "type": "bool",
-        "default": false,
-        "hint": "是否转发私聊消息到副Bot"
-      },
-      "command_prefix": {
-        "description": "命令前缀",
-        "type": "string",
-        "default": "",
-        "hint": "触发转发的命令前缀,匹配后去除前缀转发剩余内容"
-      },
-      "forward_fprefix": {
-        "description": "转发前缀",
-        "type": "list",
-        "default": ["#", "*", "%"],
-        "hint": "前缀匹配,消息以指定前缀开头时完整转发"
-      },
-      "forward_keyword": {
-        "description": "转发关键字",
-        "type": "list",
-        "default": [],
-        "hint": "触发转发的关键字,消息包含关键字时转发完整消息,为空则不启用"
-      },
-      "help_list": {
-        "description": "帮助列表",
-        "type": "list",
-        "default": [],
-        "hint": "帮助命令返回的额外帮助信息列表"
-      }
-    }
-  },
   "debug": {
     "description": "调试模式",
     "type": "bool",
