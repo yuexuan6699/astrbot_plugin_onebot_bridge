@@ -61,7 +61,7 @@ class SSEServerManager:
             for i, server_config in enumerate(websocket_clients):
                 if isinstance(server_config, dict):
                     template_key = server_config.get("__template_key")
-                    if template_key != "HTTP SSE服务器":
+                    if template_key != "HTTP SSE 服务器":
                         continue
                     name = server_config.get("name", f"sse_server_{i}")
                     self.sse_servers[name] = SSEServerConfig.from_dict(server_config)

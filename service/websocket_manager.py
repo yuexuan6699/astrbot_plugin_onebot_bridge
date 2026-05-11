@@ -81,7 +81,7 @@ class WebSocketManager:
             for i, client_config in enumerate(websocket_clients):
                 if isinstance(client_config, dict):
                     template_key = client_config.get("__template_key")
-                    if template_key != "WebSocket客户端":
+                    if template_key != "WebSocket 客户端":
                         logger.debug(f"[Bot通信] 跳过非WebSocket客户端配置: {template_key}")
                         continue
                     name = client_config.get("name", f"client_{i}")

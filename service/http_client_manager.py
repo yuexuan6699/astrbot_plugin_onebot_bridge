@@ -53,7 +53,7 @@ class HTTPClientManager:
             for i, client_config in enumerate(websocket_clients):
                 if isinstance(client_config, dict):
                     template_key = client_config.get("__template_key")
-                    if template_key != "HTTP客户端":
+                    if template_key != "HTTP 客户端":
                         continue
                     name = client_config.get("name", f"http_client_{i}")
                     self.http_clients[name] = HTTPClientConfig.from_dict(client_config)

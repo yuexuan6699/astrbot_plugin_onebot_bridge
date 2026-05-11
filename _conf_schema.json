@@ -5,8 +5,8 @@
     "hint": "配置要连接的副Bot网络服务端点",
     "default": [],
     "templates": {
-      "HTTP服务器": {
-        "name": "HTTP服务器",
+      "HTTP 服务器": {
+        "name": "HTTP 服务器",
         "hint": "配置一个HTTP服务器来接收副Bot的消息",
         "items": {
           "name": {
@@ -66,8 +66,8 @@
           }
         }
       },
-      "HTTP SSE服务器": {
-        "name": "HTTP SSE服务器",
+      "HTTP SSE 服务器": {
+        "name": "HTTP SSE 服务器",
         "hint": "配置一个HTTP SSE服务器来接收副Bot的消息",
         "items": {
           "name": {
@@ -121,8 +121,8 @@
           }
         }
       },
-      "HTTP客户端": {
-        "name": "HTTP客户端",
+      "HTTP 客户端": {
+        "name": "HTTP 客户端",
         "hint": "配置一个HTTP客户端来连接副Bot",
         "items": {
           "name": {
@@ -218,8 +218,8 @@
           }
         }
       },
-      "WebSocket服务器": {
-        "name": "WebSocket服务器",
+      "WebSocket 服务器": {
+        "name": "WebSocket 服务器",
         "hint": "配置一个WebSocket服务器来接收副Bot的连接",
         "items": {
           "name": {
@@ -321,8 +321,8 @@
           }
         }
       },
-      "WebSocket客户端": {
-        "name": "WebSocket客户端",
+      "WebSocket 客户端": {
+        "name": "WebSocket 客户端",
         "hint": "配置一个WebSocket客户端连接副Bot",
         "items": {
           "name": {

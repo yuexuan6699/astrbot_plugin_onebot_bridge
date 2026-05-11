@@ -62,7 +62,7 @@ class HTTPServerManager:
             for i, server_config in enumerate(websocket_clients):
                 if isinstance(server_config, dict):
                     template_key = server_config.get("__template_key")
-                    if template_key != "HTTP服务器":
+                    if template_key != "HTTP 服务器":
                         continue
                     name = server_config.get("name", f"http_server_{i}")
                     self.http_servers[name] = HTTPServerConfig.from_dict(server_config)

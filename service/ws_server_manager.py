@@ -73,7 +73,7 @@ class WSServerManager:
             for i, server_config in enumerate(websocket_clients):
                 if isinstance(server_config, dict):
                     template_key = server_config.get("__template_key")
-                    if template_key != "WebSocket服务器":
+                    if template_key != "WebSocket 服务器":
                         continue
                     name = server_config.get("name", f"ws_server_{i}")
                     self.ws_servers[name] = WSServerConfig.from_dict(server_config)
