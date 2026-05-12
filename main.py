@@ -279,23 +279,6 @@ class BotCommunicationPlugin(Star):
         elif forward_type == self.FORWARD_TYPE_STRIP and content:
             await self.bot_comm.convert_and_forward(event, content)
     
-    @filter.command("bot_help", alias={'帮助', 'help'})
-    async def handle_help_command(self, event: AstrMessageEvent):
-        '''显示 Bot 通信插件的帮助信息'''
-        if not self._enabled:
-            return
-        
-        help_texts = []
-        
-        for bot_name, rules in self.bot_forward_rules.items():
-            if rules["command_prefix"]:
-                help_texts.append(f"机器人 {bot_name}: {rules['command_prefix']}<命令>")
-        
-        if help_texts:
-            yield event.plain_result("\n".join(help_texts))
-        else:
-            yield event.plain_result("Bot 通信桥接插件已启用")
-    
     @filter.event_message_type(filter.EventMessageType.GROUP_MESSAGE)
     async def handle_group_message(self, event: AstrMessageEvent):
         '''处理群消息转发'''
